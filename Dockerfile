@@ -1,12 +1,12 @@
-FROM node:lts-alpine as build
-ENV NODE_ENV=production PORT=3000
+FROM node:15 as build
 WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent && mv node_modules ../
-COPY /app .
+COPY ["package.json", "package-lock.json*", "/app/server.js", "./"]
+RUN npm install
 
 
 FROM node:15-alpine
-COPY --from=build /usr/src/app /
+ENV NODE_ENV=production PORT=3000
+WORKDIR /app
+COPY --from=build /usr/src/app /app
 EXPOSE 3000
 CMD ["node", "server.js"]
