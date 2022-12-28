@@ -3,17 +3,17 @@
 ## BUILD IMAGE
 
 ```$bash
-docker build node-test .
+docker build node-user .
 ```
 
 ## CREATE AND RUN CONTAINER
 
 ```$bash
-docker run -d -p 3000:3000 --name node-test node-optimize:latest
+docker run -d -p 3000:3000 --name node-test node-user:latest
 ```
 
 ## STOP, DELETE CONTAINER AND DELETE IMAGE
 
 ```$bash
-docker stop node-test && docker rm node-test && docker rmi node-optimize
+docker stop node-user && docker rm node-user && docker rmi node-user
 ```
